@@ -1,0 +1,53 @@
+<br>
+<h2>
+Calculation of the point spread function
+</h2>
+<br>
+
+<p>
+The calculation of point spread functions is done by placing a point
+in front of the transducer and then sweeping the beam over the point.
+This gives the point spread function of the imaging system. This
+example calculates the point spread function for a concave, round
+transducer with a radius of 8 mm, a geometric focus at 80 mm and
+a center frequency of 3 MHz.
+</p>
+
+<p>
+The scanning with such a transducer is done by moving the transducer
+relative to the tissue. Field II does not have the capability of
+moving the aperture, so the point is moved instead. The point is
+moved from  -10 mm laterally in steps of 0.2 mm til +10 mm at a
+distance of 30 mm to the aperture.
+</p>
+
+<p>
+The envelope of the responses is then found and it
+is log compressed to a dynamic range of 60 dB. A mesh plot
+as the one shown below is then produced.
+</p>
+
+
+<p>
+<center>
+  <a  href="examples/logo_example/logo_example.jpg">
+  <img src="examples/logo_example/logo_example_small.jpg"></a> <br><br>
+Point spread function for concave transducer in near field
+</center>
+</p>
+
+<p>
+The m-file for calculating the images can be found at:
+<center>
+ <a href="examples/ftp_files/logo">
+          examples/ftp_files/logo</a>
+</center>
+</p>
+
+<p>
+The routine <em>field.m</em> initializes the field system, and should be modified
+to point to the directory holding the Field II code and m-files. The routine
+<em>concave_logo.m</em> is then called to calculate the point spread function
+and make the plot.
+</p>
+<br>

@@ -1,0 +1,69 @@
+<br>
+<h2>Calculation of pulsed wave phantom data for arteria femoralis
+</h2>
+<br>
+
+<p>
+This phantom is used for calculating RF data as measured from arteria femoralis
+in the upper leg. The phantom generates a number of files for particular time
+instances. The scatterers are then propagated between pulses according to the Womersley
+model mentioned in Jensen (1996) thereby generating a three-dimensional, pulsed
+model of the flow in the femoral artery. Note, that all the scatterer position
+files are generated before the simulation of the fields take place. For a pulse
+repetition frequency of 5 kHz, 5000 files are generated per second of simulation
+time, so a large amount of data is involved here.
+</p>
+
+<p>
+The scatterer position files are then used during simulation for generating one
+RF signal for each pulse emission. These files can then be used for doing either
+spectral analysis as shown below or for estimating the profile in the artery.
+</p>
+
+<p>
+The simulation is made so multiple workstations can work on the problem
+automatically at the same time, as long as they have access to the same directory.
+This is done by looking at which RF files that have been generated. The first one
+not simulated is reserved by the program by writing a dummy file, and then
+doing the simulation. Multiple workstations can then work simultaneously on
+the problem and generate a solution quickly. This has been done for the data
+show below, where 5 workstations automatically coordinated their simulations.
+</p>
+
+<p>
+The resulting spectogram for the simulation is:
+<center>
+<img src="examples/pw_example/sonogram.gif"><br><br>
+Spectrogram from arteria femoralis.
+</center>
+</p>
+
+<p>
+The m-files can be found at:
+<center>
+ <a href="examples/ftp_files/pw_phantom">
+          examples/ftp_files/pw_phantom</a>
+</center>
+</p>
+
+<p>
+The routine <em>field.m</em> initializes the field system, and should be modified
+to point to the directory holding the Field II code and m-files. The routine
+<em>make_sct.m</em> is then called to make the file for the scatterers in the
+phantom. The script <em>sim_pw_multi.m</em> is then called. Here the field simulation
+is performed and the data is stored in RF-files; one for each RF-line done.
+The script <em>show_data.m</em> is used for making the pulsed wave spectrogram
+by demodulating the data and calling <em>sonogram.m</em>.
+</p>
+
+<hr>
+
+<h2>References:</h2>
+<br>
+
+<p>
+Jørgen Arendt Jensen: <A HREF="http://server.elektro.dtu.dk/personal/jaj/?jaj/research/book.html">
+<em>"Estimation of Blood Velocities Using Ultrasound, A Signal Processing Approach"</em></A>,
+Cambridge University Press, 1996.
+</p>
+<br>

@@ -1,0 +1,42 @@
+<br>
+<h2>Calculation of intensities and peak pressure</h2>
+<br>
+
+<p>
+The example here shows how to calculate intensity profiles for different
+investigation situations. The spatial peak temporal average intensity is
+used for scaling the impulse response of the transducer, so that the correct
+intensity and pressure is obtained. A 65 elements elevation focused linear
+array with a width of lambda/2 and a height of 5 mm is used in the simulation.
+The center frequency and intensities are determined by the scanning situation,
+which can be either for fetal or cardiac imaging. An example of an intensity
+profile is shown below:
+</p>
+
+<center>
+<p>
+  <a href="examples/intensity_example/intensity.gif">
+  <img SRC="examples/intensity_example/intensity.gif" ></a>
+</p>
+
+<p>
+Intensity and peak pressure profiles for a 65 element focused
+array use for fetal imaging.
+</p>
+</center>
+
+<p>The m-files can be found at:
+<center>
+ <a href="examples/ftp_files/intensity">
+          examples/ftp_files/intensity</a>
+</center>
+</p>
+
+<p>The routine <i>field.m</i> initializes the field system, and should
+be modified to point to the directory holding the Field II code and m-files.
+The routine <i>calc_int.m</i> is then called to calculate the intensities
+and pressures. The routine also calculates the pressure from a single element.
+The routine can be modified for doing either cardiac or fetal imaging,
+and attenuation can be included.
+</p>
+<br>

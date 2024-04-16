@@ -1,0 +1,75 @@
+<br>
+<h2>Calculation of B-mode image of synthetic fetus
+</h2>
+
+<p>
+The anatomic phantoms are attempts to generate images as they will
+be seen from real human subjects. This is done by drawing a bitmap
+image of scattering strength of the region of interest. This map
+then determines the factor multiplied onto the scattering amplitude
+generated from the Gaussian distribution, and models the difference
+in the density and speed of sound perturbations in the tissue.
+Simulated boundaries were introduced by making lines in the scatterer map
+along which the strong scatterers were placed. This is marked by completely
+white lines shown in the scatterer maps. The model is currently two-dimensional,
+but can readily be expanded to three dimensions. Currently,
+the elevation direction is merely made by making
+a 15 mm thickness for the scatter positions, which are
+randomly distributed in the interval.
+</p>
+
+<p>
+A phantom for a 3 month old fetus has been made.
+200,000 scatterers were randomly distributed within
+the phantom, and with a Gaussian distributed scatter amplitude
+with a standard deviation determined by the scatter map. The
+phantom was scanned with a 5 MHz 64 element phased array transducer
+with lambda/2 spacing and Hanning apodization. A single
+transmit focus 70 mm from the transducer was used, and focusing
+during reception is at 40 to 140 mm in 10 mm increments. The
+images consists of 128 lines with 0.7 degrees between lines.
+</p>
+
+<p>
+The fetus image is shown below. Note how the anatomy can be clearly seen
+at the level of detail of the scatterer map. The same boundary
+features as for the kidney image is also seen.
+</p>
+
+<p>
+The images have many of the features from real scan images, but still
+lack details. This can be ascribed to the low level of details
+in the bitmap images, and that only a 2D model is used. But the
+images do show great potential for making powerful fully synthetic
+phantoms, that can be used for image quality evaluation.
+</p>
+
+<p>
+<center>
+  <a href="examples/fetus_example/only_fetus.gif">
+  <img src="examples/fetus_example/fetus.gif"></a>  <br><br>
+<em>Artificial fetus in 12th week.</em>
+</center>
+</p>
+
+<p>
+The m-files can be found at:
+<center>
+ <a href="examples/ftp_files/fetus">
+          examples/ftp_files/fetus</a>
+</center>
+</p>
+
+<p>
+The routine <em>field.m</em> initializes the field system, and should be modified
+to point to the directory holding the Field II code and m-files. The routine
+<em>mk_pht.m</em> is then called to make the file for the scatterers in the
+phantom. The file kidney6.bmp holds the description of the kidney.
+The script <em>sim_phas.m</em> is then called. Here the field simulation
+is performed and the data is stored in RF-files; one for each RF-line done.
+The data for the scatteres are read from the file pht_data.mat,
+so that the procedure can be started again or run for a number of workstations.
+The data must then subsequently be processed to do the polar to rectangular
+mapping to yield the image.
+</p>
+<br>

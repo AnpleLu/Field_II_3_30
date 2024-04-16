@@ -1,0 +1,77 @@
+<br>
+<h2>Multi-cpu calculation of pulsed wave phantom data for arteria femoralis
+</h2>
+<br>
+
+<p>
+This example shows how to calculate RF signals from a pulsatile flow. Often this
+includes calculation of thousands of RF signals, which can take a very long time.
+This code splits the task into one job for each RF signal and the code can easily
+be run on several machines in parallel to speed up the execution. The scatterers
+positions and velocity are calculated and not stored to avoid excessive usage of
+disk storage. The approach also has the advantage that is can be restarted if a
+computer goes down. A file is stored for each RF signals before simulation and
+a failed simulation can be restarted by deleting the file and starting the simulation
+again.
+</p>
+
+<p>
+The phantom is used for calculating RF data as measured from arteria femoralis
+in the upper leg. The scatterers are then propagated between pulses according to the Womersley
+model mentioned in Jensen (1996) thereby generating a three-dimensional, pulsed
+model of the flow in the femoral artery. Note, that all the scatterer position
+files are generated during the simulation to avoid generating massive amounts of data.
+</p>
+
+<p>
+The scatterer position are used during the simulation for generating one
+RF signal for each pulse emission. These files can then be used for doing either
+spectral analysis as shown below or for estimating the profile in the artery.
+</p>
+
+<p>
+The simulation is made so multiple workstations can work on the problem
+automatically at the same time, as long as they have access to the same directory.
+This is done by looking at which RF files that have been generated. The first one
+not simulated is reserved by the program by writing a dummy file, and then
+doing the simulation. Multiple workstations can then work simultaneously on
+the problem and generate a solution quickly. 
+</p>
+
+<p>
+The resulting spectogram for the simulation is:
+<center>
+<img src="examples/pw_example/sonogram.gif"><br><br>
+Spectrogram from arteria femoralis.
+</center>
+</p>
+
+<p>
+The m-files can be found at:
+<center>
+ <a href="examples/ftp_files/flow_example">
+          examples/ftp_files/flow_example</a>
+</center>
+</p>
+
+<p>
+The routine <em>field.m</em> should be written to initializes the field system, and 
+to point to the directory holding the Field II code and m-files. This script must be made
+by the user running this script. The script <em>sim_pulsed_flow_multi.m</em> is 
+then called. Here the field simulation
+is performed and the data is stored in RF-files; one for each RF-line done. The
+other scripts in the directory are used for defining the convex array transducer and
+for setting simulation parameters.
+</p>
+
+<hr>
+
+<h2>References:</h2>
+<br>
+
+<p>
+Jørgen Arendt Jensen: <A HREF="http://server.elektro.dtu.dk/personal/jaj/?jaj/research/book.html">
+<em>"Estimation of Blood Velocities Using Ultrasound, A Signal Processing Approach"</em></A>,
+Cambridge University Press, 1996.
+</p>
+<br>
